@@ -1,0 +1,30 @@
+
+#include<iostream>
+#include<string.h>
+#include<map>
+using namespace std;
+
+int main(){
+    map<string, int>statePopulation;
+    
+    statePopulation["California"] = 39538223;
+    statePopulation["Texas"] = 29145505;
+    statePopulation["Florida"] = 21538187;
+    statePopulation["New York"] = 20201249;
+    statePopulation["Pennsylvania"] = 13002700;
+    statePopulation["Illinois"] = 12812508;
+    
+    string statename;
+    cout<<"enter the state;";
+    getline(cin,statename);
+    
+    auto it=statePopulation.find(statename);
+    if(it!=statePopulation.end()){
+        cout<<"the population is"<<statename<<"is"<<it->second<<endl;
+    }else
+    {
+        cout<<"state name not found"<<endl;
+    }
+    return 0;
+}
+
