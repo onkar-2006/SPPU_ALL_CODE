@@ -1,0 +1,20 @@
+#include <iostream> 
+#include <fstream> 
+#include <string>
+using namespace std;
+
+int main()
+
+{
+
+ofstream MyFile("assign_4.txt"); 
+MyFile << "This is a test file	";
+MyFile.close();
+string myText;
+ifstream MyReadFile("assign_4.txt"); 
+while (getline (MyReadFile, myText)) { 
+cout << myText;
+}
+
+MyReadFile.close(); return 0;
+}
