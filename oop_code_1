@@ -15,7 +15,7 @@ class complex
     complex operator *(complex c);
     void display(void);
     friend ostream &operator<<(ostream &out , const complex &obj);
-    friend istream &operator>>(ostream &in ,  complex &obj);
+    friend istream &operator>>(istream &in ,  complex &obj);
     
 };
 
@@ -41,7 +41,7 @@ void complex::display(void)
     ostream &operator<<(ostream &out , const complex &obj)
     {
         out<<obj.x<<"+";
-        out<<obj.y<<"*";
+        out<<obj.y<<"i";
         return out;
     }
  istream &operator>>(istream &in ,complex &obj)   
