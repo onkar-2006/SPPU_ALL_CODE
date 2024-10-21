@@ -1,71 +1,70 @@
-//oop assigement no 3
 #include<iostream>
+#include<string.h>
 using namespace std;
-class Publication
-{
-    public:
-    float price ;
-    string name;
-    publication()
-    
-    void add_data(string x ,int y){
-        name=x;
-        price =y;
-    }
-    void set_data(){
-        cout<<"the name of book:"<<name<<endl;
-        cout<<"the price of the book:"<<price<<endl;
-    }
+class publication{
+	protected:
+	string title;
+	float price;
+	public:
+	void get_data1(string s,float f){
+		title=s;
+		price=f;
+	}
+	void display_data1(){
+		cout<<endl<<"Title of the book is "<<title;
+		cout<<endl<<"Price of the book is "<<price;
+	}
 };
-class page: public Publication 
+class book:public publication
 {
-    public:
-    int pagecount;
-    void set_data1(int x){
-        pagecount = x;
-    }
-    void get_data1(){
-        cout<<"the pagecout:"<<pagecount<<endl;
-    }
+	int pg_count;
+	public:
+	void get_data2(int x){
+		pg_count=x;
+	}
+	void display_data2(){
+		cout<<endl<<"Pages count is "<<pg_count;
+	}
+	
 };
-
-class cassete: public Publication
+class cassettes:public publication
 {
-    public:
-    int playtime;
-    void set_data2(int x){
-        playtime =x;
-    }
-    void get_data2(){
-        cout<<"the playtime of cassete:"<<playtime<<endl;
-    }
+	float time;
+	public:
+	void get_data3(float x){
+		time=x;
+	}
+	void display_data3(){
+		cout<<endl<<"CD playing time is "<<time;
+		
+}
 };
 int main(){
-    Publication s1;
-    int a1;
-    string s;
-    cout<<"enter the name of the book:"<<endl;
-    cin>>s;
-    cout<<"enter the count of page:"<<endl;
-    cin>>a1;
-    s1.add_data(s ,a1);
-    s1.set_data();
-    
-    int s2 , s3;
-    cout<<"enter the pagecount of the book:"<<endl;
-    cin>>s2;
-    cout<<"enter the playtime of the book:"<<endl
-    cin>>s3;
-    
-    page p1;
-    cassete c1;
-    
-    p1.set_data1(s2);
-    p1.get_data1();
-    
-    c1.set_data2(s3);
-    c1.get_data2();
-    
-    
-    
+	book b1;
+	string s;
+	cout<<endl<<"Enter the title of the book:";
+	cin>>s;
+
+	
+	int p;
+	cout<<endl<<"enter the price of the book:";
+	cin>>p;
+	b1.get_data1(s,p);
+	
+	int n;
+	cout<<endl<<"enter the pages number";
+	cin>>n;
+	b1.get_data2(n);
+	
+	cassettes c1;
+	float o;
+	cout<<endl<<"entre the CD playing time ";
+	cin>>o;
+	c1.get_data3(o);
+	
+	
+	b1.display_data1();
+	b1.display_data2();
+	c1.display_data3();
+	return 0;
 }
