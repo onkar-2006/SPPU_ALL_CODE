@@ -1,0 +1,163 @@
+Second year Computer Engineering class, set A of students like Vanilla Ice-cream and
+set B of students like butterscotch ice-cream. Write C++ program to store two sets using
+linked list. Compute and displaya) Set of students who like both vanilla and butterscotch
+b) Set of students who like either vanilla or butterscotch or not both
+c) Number of students who like neither vanilla nor butterscotch */
+#include<iostream>
+using namespace std;
+class node
+{
+public:
+int rno;
+node*next;
+};
+class sll{
+public:
+int n,i;
+node *header=NULL, *temp=NULL, *temp1=NULL, *temp2=NULL, *temp3=NULL;
+void *create_new_node(){
+node *new_node=new node(); //New node is created
+cout<<"enter Total no. of Students:";
+cin>>n;
+for(i=0;i<n;i++){
+temp=new node();
+cout<<"Enter roll no.:";
+cin>>temp->rno;
+temp->next=NULL;
+if (header==NULL){
+header=temp;
+}
+else
+{
+temp->next=header;
+header=temp;
+}
+}
+new_node -> next=NULL;
+return new_node;
+}
+void display(){
+node *temp=header;
+while (temp!=NULL){
+cout<<temp->rno<<"->";
+temp=temp->next;
+}
+cout<<"NULL"<<endl;
+}
+void insert(node *l){
+if(header==NULL)
+header=l;
+else{
+node *temp=header;
+while(temp->next != NULL){
+temp=temp->next;
+}
+temp->next=l;
+}
+}
+void VAndB(node *l1,node *l2){
+temp1=l1;
+while(temp1 !=NULL){
+temp2=l2;
+while(temp2!=NULL){
+if(temp1->rno==temp2->rno){
+node *t=new node();
+t->rno=temp1->rno;
+t->next=NULL;
+insert(t);
+break;
+}
+temp2=temp2->next;
+}
+temp1=temp1->next;
+}
+cout<<"The students who like both Vanilla and Butterscotch are:";
+display();
+}
+void VunionB(node *vheader,node *vandbheader,node *vORbheader){
+temp1=vheader;
+temp2=vandbheader;
+temp3=vORbheader;
+while(temp1!=NULL){
+//cout<<"\n Inside while: "<<temp1->rno<<"\n";
+temp2=vandbheader;
+while(temp1->rno!=temp2->rno){
+temp2=temp2->next;
+if(temp2==NULL)
+break;
+}
+if(temp2==NULL){
+node *t=new node();
+t->rno=temp1->rno;
+t->next=NULL;
+// cout<<"\n Inside while: "<<t->rno<<"\n";
+//insert(t);
+if(temp3==NULL)
+vORbheader=t;
+else{
+node *temp=vORbheader;
+while(temp->next != NULL){
+temp=temp->next;
+}
+temp->next=t;
+}
+}
+temp1=temp1->next;
+//cout<<"\n Inside while: "<<temp1->rno;
+}
+display();
+}
+void VnorB(node *vORbheader, node *allheader){
+temp1=allheader;
+temp2=vORbheader;
+temp3=header;
+while(temp1!=NULL){
+//cout<<"\n Inside while: "<<temp1->rno<<"\n";
+temp2=vORbheader;
+while(temp1->rno!=temp2->rno){
+temp2=temp2->next;
+if(temp2==NULL)
+break;
+}
+if(temp2==NULL){
+node *t=new node();
+t->rno=temp1->rno;
+t->next=NULL;
+//insert(t);
+if(header==NULL)
+header=t;
+else{
+node *temp=header;
+while(temp->next != NULL){
+temp=temp->next;
+}
+temp->next=t;
+}
+}
+temp1=temp1->next;
+//cout<<"\n Inside while: "<<temp1->rno;
+}
+display();
+}
+};
+int main(){
+sll v1,b1,vandb,vORb, vNorb, all;
+cout<<"Enter total Students in the class: \n";
+all.create_new_node();
+all.display();
+cout<<"For Vanilla ";
+v1.create_new_node();
+cout<<"The list For Vanilla is:";
+v1.display();
+cout<<"For Butterscotch ";
+b1.create_new_node();
+cout<<"The list For Butterscotch is:";
+b1.display();
+vandb.VAndB(v1.header,b1.header);
+vORb.header=b1.header;
+//vORb.display();
+vORb.VunionB(v1.header,vandb.header,vORb.header);
+cout<<"The list of students who neither like vanilla nor Butterscotch is:";
+vNorb.VnorB(vORb.header, all.header);
+return 0;
+}
