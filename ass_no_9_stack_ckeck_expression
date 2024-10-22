@@ -1,0 +1,78 @@
+/*In any language program mostly syntax error occurs due to unbalancing delimiter such
+as (),{},[]. Write C++ program using stack to check whether given expression is well
+parenthesized or not.*/
+#include <iostream>
+using namespace std;
+int n = 10;
+class Stack {
+public:
+char stk[10];
+int top;
+Stack() { top = -1; }
+int isEmpty() {
+if (top == -1) {
+return 1;
+} else {
+return 0;
+}
+}
+int isFull() {
+if (top == (n - 1)) {
+return 1;
+} else {
+return 0;
+}
+}
+void push(char x) {
+if (isFull()) {
+cout << "Stack Overflow";
+} else {
+top = top + 1;
+stk[top] = x;
+}
+}
+char pop() {
+if (isEmpty()) {
+cout << "Stack Underflow";
+return '0';
+} else {
+char x;
+x = stk[top];
+top = top - 1;
+return x;
+}
+}
+char peek() {
+if (isEmpty()) {
+cout << "Stack Underflow";
+return '0';
+} else {
+return stk[top];
+}
+}
+};
+int main() {
+Stack s;
+string exp;
+cout << "Enter the expression: " << endl;
+cin >> exp;
+int len = exp.length();
+int flag = 1;
+for (int i = 0; i < len; i++) {
+if (exp[i] == '(' or exp[i] == '{' or exp[i] == '[') {
+s.push(exp[i]);
+} else if ((exp[i] == ')' && s.stk[s.top] == '(') ||
+(exp[i] == '}' && s.stk[s.top] == '{') ||
+(exp[i] == ']' && s.stk[s.top] == '[')) {
+s.pop();
+} else if ((exp[i] == ')' or exp[i] == '}' or exp[i] == ']') && s.isEmpty()) {
+flag = 0;
+}
+}
+if (s.isEmpty() && flag) {
+cout << "Expression is well parenthesized";
+} else {
+cout << "Expression is not well parenthesized";
+}
+return 0;
+}
