@@ -1,0 +1,176 @@
+/*Implement C++ program for expression conversion as infix to
+postfix and its evaluation using stack based on given conditions:
+1. Operands and operator, both must be single character.
+2. Input Postfix expression must be in a desired format.
+3. Only '+', '-', '*' and '/ ' operators are expected.*/
+#include <cstring>
+#include <iostream>
+#include <string>
+#define N 10
+using namespace std;
+int var = 0;
+class stack1 {
+public:
+float stk[10];
+int top;
+stack1() { top = -1; }
+void push(float c) {
+if (top == (N - 1)) {
+cout << "stack overflow";
+} else {
+top += 1;
+stk[top] = c;
+}
+}
+float pop() {
+float c = -1;
+if (top == -1) { // cout<<"Stack underflow";
+} else {
+c = stk[top];
+top--;
+}
+return c;
+}
+float evaluate(string op);
+};
+class stack {
+public:
+char arr[10];
+string ex;
+int top, var = 0;
+stack() { top = -1; }
+void push(char c) {
+if (top == (N - 1)) {
+cout << "stack overflow";
+} else {
+top += 1;
+arr[top] = c;
+}
+}
+char pop() {
+char c = ' ';
+if (top == -1) { // cout<<"Stack underflow";
+} else {
+c = arr[top];
+top--;
+}
+return c;
+}
+int precedance(char opr) {
+if (opr == '*' || opr == '/')
+return 2;
+if (opr == '+' || opr == '-')
+return 1;
+if (opr == '(')
+return 0;
+return -1;
+}
+char associativity(char opr) {
+if (opr == '*' || opr == '/' || opr == '+' || opr == '-')
+return 'L';
+else
+return 'R';
+}
+char peek() { return arr[top]; }
+string InfixToPostfixConversion(string ex);
+};
+string stack::InfixToPostfixConversion(string ex) {
+int l = ex.length();
+int i = 0, j = 0;
+char op_exp[20];
+char ch, ch1;
+while (i < l) {
+// cout<<ex[i];
+if (ex[i] == '+' || ex[i] == '-' || ex[i] == '*' || ex[i] == '/') {
+if (top == -1)
+push(ex[i]);
+else {
+ch = peek();
+// if(ch== ' ')
+while (precedance(ex[i]) <= precedance(ch)) {
+ch1 = pop();
+op_exp[j++] = ch1;
+ch = peek();
+}
+push(ex[i]);
+}
+} else if (ex[i] == '(')
+push(ex[i]);
+else if (ex[i] == ')') {
+ch1 = pop();
+while (ch1 != '(' && top != -1) {
+op_exp[j++] = ch1;
+ch1 = pop();
+}
+if (ch1 != '(' && top == -1) {
+cout << "Mismatched Parenthesis" << endl;
+return "Error";
+}
+} else {
+op_exp[j++] = ex[i];
+// var++;
+}
+i++;
+}
+do {
+ch = pop();
+op_exp[j++] = ch;
+} while (ch != ' ');
+op_exp[j] = '\0';
+// cout<<op_exp<<endl;
+return op_exp;
+}
+float stack1::evaluate(string op) {
+int operands[10], i, j = 0;
+cout << "\n Enter no. of variables= ";
+cin >> var;
+cout << "\n Enter values of operands :";
+for (i = 0; i < var; i++) {
+cout << "Operand: " << i << " : ";
+cin >> operands[i];
+}
+int l = op.length();
+i = 0;
+while (i < l) {
+if ((op[i] <= 'z' && op[i] >= 'a') || (op[i] <= 'Z' && op[i] >= 'A')) {
+push(operands[j++]);
+} else {
+float op1 = pop();
+float op2 = pop();
+switch (op[i]) {
+case '+':
+push(op2 + op1);
+break;
+case '-':
+push(op2 - op1);
+break;
+case '*':
+push(op2 * op1);
+break;
+case '/':
+if (op1 == 0) {
+cout << "Error: Division by zero." << endl;
+return 0;
+}
+push(op2 / op1);
+break;
+}
+}
+i++;
+}
+return pop();
+}
+int main() {
+stack s;
+stack1 s1;
+string ex;
+cout << "\n Enter an expression:";
+cin >> ex;
+string op_exp = s.InfixToPostfixConversion(ex);
+cout << "\n Postfix Expression is: " << op_exp;
+if (op_exp != "Error") {
+float val = s1.evaluate(op_exp);
+cout << "\n Result of Evaluation of the postfix expression: " << val;
+}
+return 0;
+}
