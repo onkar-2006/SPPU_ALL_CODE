@@ -1,0 +1,650 @@
+
+//VIRTUAL FUCTION AND FUCTION OVERRIDE
+//WHEN WE USE THE VIRTUAL KEYWORS THE CLASS IS BECOME THE ABRCT
+//THE MAIN ADVANTAGE OF THE VIRTUAL FUCTION IN ONE INTERFACE U CAN PERFORM THE MUTLTIPLE TASK IS CALLED THE POLYMORPHISM
+//THE FUCTION OBERIDE IS THE CONSEPT IN WHICH THE CHILD CLASS FUCTION OVERRIDE THE BASE CLASS FUCTION 
+//THIS ARE THE RUNTIME POLYMORPHISM-IF THE FUCTION CALL IS RESLOVE AT THE RUNTIME IS CALLED THE RUNTIME PLOYMORPHISM
+//THE virtual keyword is uesd to overide the fuction
+/*#include<iostream>
+using namespace std ;
+class Animal
+{
+    public:
+    virtual void sound(){
+        cout<<"the animal make sound";
+    }
+};
+class Dog: public Animal
+{
+    public:
+    void sound() override{
+        cout<<"the dog bark"<<endl;
+    }
+};
+class Cat:public Animal
+{
+    public:
+    void sound() override{
+        cout<<"the cat maow"<<endl;
+    }
+};
+int main(){
+    Animal*ptr;
+    Dog dog;
+    Cat cat;
+    
+    ptr=&dog;
+    ptr->sound();
+    ptr=&cat;
+    ptr->sound();
+    return 0;
+}
+//the pointer to the base class is the consept in which we derivde class fuction pointer to the base class
+//POINTER TO THE BASE CLASS
+*/
+class polygon
+{
+    public:
+    int wight  , height;
+    void set_values(int a ,int b){
+        wight=a;
+        height=b;
+    }
+};
+class rectangle :public polygon
+{
+    public:
+    int area(){
+        return height*wight;
+    }
+};
+class tringle:public polygon
+{
+    public:
+    int area(){
+        return (height+wight)/2;
+    }
+};
+int main(){
+    tringle tgrl;
+    rectangle rect;
+    
+    polygon* ppoly1=&tgrl;
+    polygon* ppoly2=&rect;
+    
+    
+    ppoly1->set_values(3,5);
+    ppoly2->set_values(3,4);
+    cout <<rect.area()<<"\n";
+    cout <<tgrl.area()<<"\n";
+    return 0;
+}
+//when we use the mutable keyword the u can change the value of the datamember where they are define as const
+class Test
+{
+    public ;
+    int a;
+    mutable int b;
+    
+    void change()const{
+        a=a+10;
+        b=b+20;
+    }
+    void display(){
+        cout<<a;
+        cout<<b;
+    }
+}
+
+///the explicit keyowrd is used to convert the conversion to the non conversion constructor
+//to do this explicit keyword is used
+class Test{
+    public:
+    explicit test()
+    int val:int x;
+    
+}
+
+#include<iostream>
+using namespace std;
+
+int add(int a ,int b){
+    return a+b
+
+float add(float a , float b){
+    return a+b
+}
+}
+int main(){
+    int intreuslt=add(3,3)
+    float floatresult=add(4,3)
+    
+    cout<<"the sum of int reuslt"<<intresult;
+    vout<<"the sum of the foatreesult"<<floatresult;
+    return 0
+}
+
+//pure virtual fcution is specified by the vale =0
+//pure virtual fcution can not instantied so they are overide by the child class fcution
+#include<iostream>
+using namespace std;
+class  Base{
+    public:
+    virtual void display()==0;
+};
+class Derived:public Base{
+    public:
+    void display(){
+        cout<<"the derived class"
+    }
+};
+int main(){
+    Base* ptr ;
+    Derived obj;
+    prt=&obj;
+    ptr->display();
+    return 0;
+}
+//virtual distrucor is the base class destrucor which  explicitelydellocate the memorty of the derived class 
+//the virtaul dectrucor is speicified by the keyword virtal
+
+#include<iostream>
+using namespace std;
+class Base
+{
+    public:
+    Base(){cout<<"the base class constructor";}
+    virtual ~Base(){cout<<"the dase class destrucor";}
+}
+class Derived:public Base
+{
+    public:
+    Derived(){cout<<"the deried class consturcot";}
+    ~Derived(){cour<<"the derived class destrucot";}
+}
+int main(){
+    Base* obj=new Derived;
+    delete obj;
+}
+//the opretor overloading is the consept in which we give the meaninng o the opetor to the primanry opretor 
+//we user the fuction nae foolowr the name opreotr and also the any bluit in opetor like the (=-=/)
+//we cant to override the opretor like (size of ,.,?)
+#include<iostream>
+using namespace std;
+class coord(
+    {
+        public:
+        coord(){
+            x=0;
+            y=0;
+        }
+        coord(int i ,int j){
+            x=i;
+            y=j;
+        }
+        void get_xy(int &i , int&j){
+            i=x;
+            y=j;
+        }
+        coord operator++()
+        };
+coord coord::opretor ++()
+{
+    x++;
+    return *this;
+}
+int main(){
+    int x;
+    int y;
+    cin>>x>>y;
+    coord(x,y);
+    ++obj;
+    cout<<"the increment opereotr increment the co-oridnate"<<endl
+    cout<<"X"<<x<<"y"<<y;
+    return 0;
+}
+//type conersion is use to convert the one datatype in to anather datatype
+
+class Test
+{
+    public:
+    operator int()
+};
+Test :: operator int(){
+        int sum;
+        sum=5;
+        return sum;
+    }
+int main(){
+    int x;
+    x=10
+    cout<<"the value of the x is "<<x
+    x=int(obj)
+    cout<<"the values assign by the class is "<<x;
+    return 0;
+}
+
+exeption handling 
+#include<iostream>
+using namespace std;
+int main(){
+    try
+    {
+        throw 100
+        
+    }
+    catch(int x){
+        cout<<"the exeption is caught"<<x;
+    }
+}
+
+devide by the zero;
+#include<iostream>
+using namespace std;
+int main(){
+double i,j;
+void devide(double ,double);
+cout<<"the denom";
+cin>>i;
+cout<<"the denom";
+cin>>j;
+devide(i,j);
+}
+void devide(double a ,double b){
+    try 
+    {
+        if(b==0){
+            throw b
+        cout<<"the a/b is"<<a/b;
+        }
+    }catch(double b){
+        cout<<"cant devide a/b"
+    }
+    return 0;
+}
+}
+#include<iostream>
+#include<math.h>
+void my_sqrt(double val)
+{
+    try
+    {
+        if(val<0.0){
+            throw"negative"
+        else{
+            cout<<"the sqrt of val is"<<sqrt(val);
+        }catch(char *str){
+            cout<<"cant devide"<<str<<number;
+        }
+        }
+    }
+}int main(){
+    cout<<"enter the number";
+    double num;
+    cin>>num;
+    my_sqrt(num);
+    return 0;
+}
+
+#include<iostream>
+using namespace std;
+class Test
+{
+    public:
+    Test(){cout<<"inside the constructor"<<endl
+    ~test(){cout<<"enside the destrucor"<<endl;
+};
+int main()
+{
+    try{
+        Test obj1 ,obj2;
+        throw 100;
+    }
+    catch(int e){
+        cout<<"the exeption is caught"
+    }
+    return 0;
+}
+
+#include<iostream>
+using namespace std;
+void fuction(){
+    try
+    {
+        throw "myword"
+        
+    }catch(char*){
+        cout<<"inside the function";
+        throw;
+    }
+}
+int main(){
+    try
+    {
+        function();
+    }
+    
+    catch(char*){
+        cout<<"inside the main() fuction";
+        }
+    }return 0;
+}
+//fuction template
+#include<iostream>
+using namespace std;
+template<class T>
+T min(T a ,Tb){
+    if(a>b)
+        return a;
+    else
+        return b;
+    }
+    int main()
+    {
+        cout<<"the min between(3,4)"<<min(3,3)<<endl;
+        cout<<"the min between(t,p))"<<min("p","t")<<endl;
+    }
+    
+#include<iostream>
+using namespace std;
+template<class T>
+void display(T x){
+    cout<<x;
+}
+void display(int x){
+    cout<<"inside the non template fuction"
+}
+int main(){
+    cout<<"desplay string";
+    display("hello");
+    cout<<"display number";
+    display(10.23);
+    desplay(123)//non template fution cll
+    return 0;
+}
+
+#include<iostream>
+using namespace std;
+template<class T>
+T min(T a[10]){
+    T min;
+    min=a[0]
+    for(int i =0 ;i<10 ;i++){
+        if(a[i]<min){
+            min=a[i]
+        }
+    }return min
+}
+
+#include<iostream>
+using namespace std;
+template<class T>
+void sort(T*list ,T key , T count){
+    int flag;
+    flag=0;
+    for(int i = 0;i<n ;i++){
+        if(key==list[i]){
+            flag==1
+        }
+        if(flag==1){
+            cout<<"the element is present in the list"
+        }else
+        {
+            cout<<"the element is not present in the list"
+        }
+int main(){
+    int a[10]={23,23,45,5,4,2}
+    cout<<"searching the element 5 in the list";
+    display(a,5,5)
+    
+    double b[7]={33.33,45.45 ,455.44,34.4}
+    cout<<"search the 45.45 element in the list";
+    display(b,45.45 ,4);
+    return 0;
+}
+
+#include<iostream>
+using namespace std;
+template<class T >
+class Sumclass
+{
+    public:
+    sumclass(T first ,T second){
+        a=first;
+        b=second;
+    }
+    T addition();
+};
+template<class T>
+T sumclass<T>::addtion(){
+    T retravl;
+    retraval=a+b;
+    retrun retraval;
+}
+}
+#include<iostream>
+using namespace std;
+class compare{
+    T a ,b;
+    public:
+    compare(T first ,T second){
+        a=first ;
+        b=second;
+    }
+    T max();
+}
+template<class T>::max(){
+    T val;
+    if(a>b)
+       val=a;
+    else
+       val=b
+    return val
+}
+int main(){
+    compare<int>obj1(100,200);
+    compare<char>obj2("y","s");
+    cout<<"the maximun"<<obj1..max();
+    cout<<"the maixinum"<<obj2.max();
+}
+
+//unit 6
+#include<iostream>
+#include<deque>
+using namespace std;
+int main()
+{
+    int ,item,choice;
+    char ans=="y"
+    deque<int>dq;
+    deque<int>iterator i;
+    do{
+        cout<<"the given programis for the iplimenting th deque using the stl"
+        cout<<"main manu"
+        cout<<"insert front"
+        cout<<"insert rear";
+        cout<<"delete fornt"
+        cout<<"delete rear"
+        cout<<"size of the deque";
+        cout<<"display"
+        cout<<"enter your choice";
+        cin>>choice;
+        switch(choice)
+        {
+            case 1 :cout<<"enter the element to be insert";
+            icn>>item;
+            dp.puch_fornt(item);
+            break;
+            
+            case 2 :cout<<"enter the lemnt to be insert";
+            cin>>item;
+            dq.push_back(item)
+            break;
+            
+            case 3 :item =dq.front()
+             dq.pop_front()
+             cout<<'the deleted num is'<<item;
+             break;
+             
+             case 4 :dq.back()
+             dq.pop_back();
+             cout<<"the deleted element is"<<item;
+             break;
+             
+        }cout<<"do u want to continue"
+        cin>>ans
+    }while(ans=="y"|| ans=="Y")
+        }
+    }
+}
+
+#include<iostream>
+using namespace std;
+#include<vector>
+int main()
+{
+vector<int>numbers
+number.push_back(10);
+number.push_back(20);
+number.push_back(30);
+number.osuh_back(23);
+
+cout<<"the side of the vector"<<number.size()<<end;
+
+cout<<"display the size of the vector"<<endl
+for<int i =0 ;i<number.size();++i){
+    cout<<number[i]<<" ";
+    
+number[1]=23;
+cout<<"after update he values";
+for<int i =0 ;i<number.size();++i){
+    cout<<number[i]<<" ";
+    cout<<endl;
+    return 0;
+}
+
+#include<ioatream>
+#include<map>
+using namespace std;
+int main()
+{
+    map<string ,int>agemap
+    agemap["a"]=23;
+    agemap["b"]=24;
+    agemap["c"]=25;
+    
+    cout<<"the age of the alise"<<agemap["a"]<<endl;
+    
+     cout << "All entries in the map:\n";
+    for (const auto& pair : ageMap) {
+        cout << pair.first << ": " << pair.second << endl;
+    }
+    if(agemap.find("a")==agemap.end())
+    {
+        cout<<"the devide is not found in the list";
+    }
+    else{
+        cout<<"the age of a"<<agemap[a];
+    }
+    agemap.erase("b")
+    cout<<"after the modified the list";
+    for(const auto&pair :agemap){
+        cout<<pair.first<<":"<<pair.second<<endl
+    }
+    }
+
+#include<iostream>
+#include<stack>
+using namespace std;
+int main()
+{
+    int ans ;
+    int item;
+    int char*;
+    int choice;
+    stack<int>s;
+    do{
+        cout<<"main menu";
+        cout<<"push";
+        cout<<"pop";
+        cout<<"display";
+        cout<<"enter your choice";
+        cin>>choice;
+        switch(choice){
+            case 1 :cout<<"enter the nmuber to be ibsert";
+            cin>>item;
+            s.push(item);
+            cout<<"item is push";
+            break;
+            case 2 :if(!s.empty()){
+            s.pop();
+            cout<<"the item pop"<<item;
+            else
+            {
+                cout<<"the stack empty";
+            }
+            case 3 : if(!s.empty())
+            {
+                cout<<"top of stack element"<<s.top();
+            }
+            else{
+                cout<<"the stack is emty"
+            }
+        cout<<"do u wnat to continue";
+        cin>>ans;
+            }while(ans=="y")
+            return 0;
+        
+        }
+    }
+    
+}
+#include<iostream>
+#include<algorithm>
+using namespace std;
+int a[]={10,20,30,4050,60,70,60}
+int key ;
+char ans=="y";
+int main(){
+    cout<<"the array";
+    for(int i =0 ;i<9 ;i++){
+        cout<<a[i];
+    }
+    do{
+        cout<<"enter the element to be search";
+        cin>>key;
+        if(binary_search(a,a+8 ,key)){
+            cout<<"the"<<key<<"is present";
+            else{
+                cout<<"the"<<key<<"is not present";
+            }
+        cout<<"do u want to continue";
+        cin>>ans;
+        }
+        while(ans=="y")
+        return 0;
+            }
+        }
+    }
+    }
+
+#include<iostream>
+#include<algorithim>
+using namespace std;
+int main(){
+    auto a={10,30,30,40}
+    auto result=mimmax(a);
+    cout<<"the minimum element"<<result.first;
+    cout<<"the maximun element"<<result.second;
+    return 0;
+}
+
+#include<iostream>
+#include<algorithim>
+using namespace std;
+int main(){
+    cout<<"max(1,2)"<<max(20,10);
+    cout<<"max(t,r)"<<max("t","r");
+}
+
+}
